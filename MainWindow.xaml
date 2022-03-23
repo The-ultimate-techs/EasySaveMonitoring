@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave"
-        xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
-        xmlns:View="clr-namespace:EasySave.MVVM.View"
+
 
         mc:Ignorable="d"
         Height="600" Width="1100"
@@ -18,7 +17,7 @@
 
     <Window.DataContext>
         <local:MainViewModel/>
-        
+
     </Window.DataContext>
 
 
@@ -26,129 +25,259 @@
             CornerRadius="10">
         <Grid Margin="4,0,-4,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="211.333"/>
+                <ColumnDefinition Width="8.667"/>
                 <ColumnDefinition Width="20*"/>
-                
+
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="263*"/>
-                
+
             </Grid.RowDefinitions>
 
 
+            <StackPanel  Orientation="Vertical" Grid.ColumnSpan="3" Margin="0,0,833,0">
 
 
-            <Button Height="50" 
-                    Width="140" 
-                    Margin="0,5,0,15"
-                    Click="HomeButtonClick" 
-                    ClickMode="Release"
-                    Style="{StaticResource CustomControlButton}"
-                    Command="{Binding HomePageCommand}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel  Orientation="Horizontal" Width="216" VerticalAlignment="Center" HorizontalAlignment="Center"  >
                     <Image Width="60"
                        Height="60"
+                       
                        Source="Resource/logo.png" 
-                       Margin="-10,-2,0,0"/>
+                       Margin="30,-2,0,-15"/>
                     <TextBlock Text="EasySave"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
                        FontSize="22" />
                 </StackPanel>
-            </Button>
 
+                <TextBlock Text="Monitoring Tool"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="22" />
 
+            </StackPanel>
             
-       
+            
             
 
 
-            <StackPanel Grid.Row="1" Grid.RowSpan="2">
-                
-                
-
-                <RadioButton Content="{DynamicResource Create_button}"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             HorizontalAlignment="Center"                             
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding CreateSaveFileCommand}" Checked="RadioButton_Checked"/>
-
-                <RadioButton Content="{DynamicResource Edit_button}"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             HorizontalAlignment="Center"
-                             Style="{StaticResource MenuButtonTheme}"
-                     Command="{Binding EditSaveFileCommand}"/>
-                
+           
 
 
 
-                <RadioButton Content="{DynamicResource Run_button}"
-                             Height="50"
-                             Foreground="White"
-                             HorizontalAlignment="Center"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding RunSaveFileCommand}"/>
 
-                <RadioButton Content="{DynamicResource Delete_button}"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             HorizontalAlignment="Center"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding DeleteSaveFileCommand}"
-                             />
+
+
+
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+
+                <Grid Margin="20,20,20,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                Margin="10,10,10,0">
+
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <GradientStop Color="#ECD829" Offset="0.0"/>
+                                <GradientStop Color="#F09434" Offset="0.9"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Clip>
+                            <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                    Rect="0,0,230,460"/>
+                        </Border.Clip>
+
+
+
+
+
+
+
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
+                               Foreground="white"
+                               FontSize="17" 
+                               />
+
+
+                                <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+
+                                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
+                               Foreground="white"
+                               FontSize="11" 
+                               TextAlignment="Justify"/>
+
+
+                            </StackPanel>
+                            <Image Width="110"
+                       Height="110"
+                       Source="../../Resource/executif.png" 
+                       Margin="130,357,0,0"/>
+
+                        </Grid>
+
+                    </Border>
+
+
+                    <TextBlock Text="{DynamicResource Backup_Job_List}"
+                   Grid.Column ="1"
+                   Foreground="white"
+                   Margin="0,20,0,0"
+                   HorizontalAlignment="Center"
+                   FontSize="20"/>
+
+                    <Grid Grid.Column="1" Margin="10,70,10,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="400" BorderThickness="0" >
+                            <ItemsControl ItemsSource="{Binding TileList}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border  Margin="10" CornerRadius="10" >
+
+
+                                            <Grid Height="50" >
+
+
+                                                <Grid.ColumnDefinitions>
+
+                                                    <ColumnDefinition Width="310"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                    <ColumnDefinition Width="15"/>
+
+                                                </Grid.ColumnDefinitions>
+
+                                                <ProgressBar Grid.Column="0"
+                                                 Grid.ColumnSpan="7"
+                                                 Minimum="0"
+                                                 Maximum="{Binding TotalFile}"
+                                                 Value="{Binding progression}"
+                                                 Style="{StaticResource CustomProgressBar}">
+
+                                                </ProgressBar>
+
+                                                <Button Grid.Column="1"
+                                            x:Name="PlayButton"
+                                            Visibility="{Binding PlayState}"
+                                            ClickMode="Release"
+                                            
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.PlayCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                                    <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/play-button-arrowhead.png"/>
+                                                </Button>
+
+
+
+                                                <Button Grid.Column="1"
+                                            x:Name="PauseButton"
+                                            ClickMode="Release"
+                                            Visibility="{Binding PauseState}"
+                                            
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.PauseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                                    <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/pause-button.png" 
+                      />
+                                                </Button>
+
+                                                <Button Grid.Column="2"
+                                            x:Name="StopButton"
+                                            ClickMode="Release"
+                                            IsEnabled="{Binding StopButton}"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.StopCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                                    <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/stop.png" 
+                      />
+                                                </Button>
+
+                                                <Button Grid.Column="3"
+                                            ClickMode="Release"
+                                            Click="ChangeDataContext"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.EditSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
+
+                                                    <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/pencil.png" 
+                      />
+                                                </Button>
+
+                                                <Button Grid.Column="4"
+                                            ClickMode="Release"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.DeleteSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
+
+                                                    <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/delete.png"  
+                      />
+                                                </Button>
+
+                                                <TextBlock Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="17" Text="{Binding Title}" Foreground="White" Margin="10,0,0,0"/>
+
+
+
+                                            </Grid>
+
+
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                    </Grid>
+
+
+
+
+
+                </Grid>
+
+
+
+
             </StackPanel>
 
-            <Button 
-               
-                Margin="10,470,10,0"
-                Grid.Row="2"
-                Height="50"
-                Width="150"
-                HorizontalAlignment="Left"
-                Click="SettingsClick" 
-                ClickMode="Release"
-                Style="{StaticResource CustomControlButton}"
-                Command="{Binding SettingsCommand}"
- >
 
-                <StackPanel 
-                    Orientation="Horizontal"
-                    Background="Transparent">
-                    
-                    <Image 
-                        Height="30" 
-                        Width="30"
-                        Source="Resource/setting.png" 
-                        Margin="0,0,20,0"/>
-
-                    <TextBlock
-                        Foreground="White"
-                        FontSize="14"
-                        HorizontalAlignment="Center"
-                        Text="{DynamicResource Parameters}">
-                    </TextBlock>
-                    
-                </StackPanel>
-
-
-            </Button>
 
             <StackPanel 
                     Orientation="Horizontal"
                     Background="Transparent"
                     Width="400"
                      Margin="47,0,433,20"
-                     Grid.Column="1">
-                
+                     Grid.Column="2">
+
                 <TextBox
                     Style="{StaticResource ModernTextbox}" 
                     TextChanged="TextBox_TextChanged"
@@ -168,7 +297,7 @@
                 ClickMode="Release"
                 Style="{StaticResource CustomControlButton}">
 
-                  <Image
+                    <Image
                     Height="30" 
                     Width="30"
                     Source="Resource/search.png"/>
@@ -179,66 +308,65 @@
 
             <Image
                 x:Name="US"
-                Margin="455,0,0,22"
+                Margin="652,12,198,33"
                 Height="30" 
                 Width="30"
                 Source="Resource/united-states-of-america.png"
-                Grid.Column="1"
+                Grid.Column="2"
                 Opacity="1"/>
 
             <Button HorizontalAlignment="Left"
                     Height="35" 
-                    Grid.Column="1"
-                    Margin="690,0,0,22"
-                    VerticalAlignment="Center"
+                    Grid.Column="2"
+                    Margin="690,9,0,0"
+                    VerticalAlignment="Top"
                     Width="50" 
                     x:Name="ChangeLanguageButton"
                     Tag="{Binding Language}"
                     Style="{StaticResource InvisibleButton}"
                     Command="{Binding ChangeLanguage}">
-                
-            <local:ToggleButton 
+
+                <local:ToggleButton 
                 x:Name="Bu" 
                 Width="50"
                 Height="30"
                 MouseLeftButtonDown="Bu_MouseLeftButtonDown" 
                 Loaded="Bu_Loaded"/>
-                
+
             </Button>
 
             <Image 
                 x:Name="France" 
-                Margin="640,0,0,22"
+                Margin="745,12,105,33"
                 Height="30" 
                 Width="30"
                 Source="Resource/france.png"
-                Grid.Column="1"
+                Grid.Column="2"
                 Opacity="0.2"/>
 
             <Button
                 x:Name="dash" 
-                Margin="720,0,0,22"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
+                Margin="785,12,65,33"
+                Grid.Column="2"
                 Height="30" 
                 Width="30"
                 Click="MinimizeClick" 
                 ClickMode="Release"
                 Style="{StaticResource CustomControlButton}">
-                
-                
-                    <Image 
+
+
+                <Image 
                     Margin="0,14,0,0"
                     Height="25" 
                     Width="25"
                     Source="Resource/Dash.png"/>
 
             </Button>
-            
+
 
             <Button
                 x:Name="x" 
-                Margin="800,0,0,22"
+                Margin="825,12,25,33"
                 Height="30" 
                 Width="30"
                 Grid.Column="2"
@@ -246,17 +374,17 @@
                 ClickMode="Release"
                 Style="{StaticResource CustomControlButton}"
                 Command="{Binding CloseCommand}">
-                
+
                 <Image 
                     Height="25" 
                     Width="25"
                     Source="Resource/x.png"/>
-              
+
             </Button>
 
             <ContentControl Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="10"
+                            Grid.Column="2"
+                            Margin="95,10,10,10"
                             Content="{Binding CurrentView}"/>
 
 

@@ -1,5 +1,5 @@
-﻿using EasySave.MVVM.View;
-using EasySave.MVVM.ViewModel;
+﻿
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;

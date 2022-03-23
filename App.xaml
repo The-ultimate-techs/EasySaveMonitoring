@@ -2,8 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:EasySave"
-             xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
-             xmlns:View="clr-namespace:EasySave.MVVM.View"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -20,24 +18,7 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate DataType="{x:Type Viewmomdel:CreateSaveFileViewModel}" >
-                <View:CreateSaveFileView />
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:DeleteSaveFileViewModel}" >
-                <View:DeleteSaveFileView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:EditSaveFileViewModel}" >
-                <View:EditSavefileView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:HomePageViewModel}" >
-                <View:HomePageView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:RunSaveFileViewModel}" >
-                <View:RunSaveFileView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:SettingsViewModel}" >
-                <View:SettingsView/>
-            </DataTemplate>
+
 
         </ResourceDictionary>
     </Application.Resources>

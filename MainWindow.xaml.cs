@@ -124,5 +124,37 @@ namespace EasySave
         }
 
 
+        private void Processlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangeDataContext(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void PlayClick(object sender, RoutedEventArgs e)
+        {
+
+
+
+        }
+
+
+        private void PauseClick(object sender, RoutedEventArgs e)
+        {
+
+
+
+
+        }
+
     }
 }
