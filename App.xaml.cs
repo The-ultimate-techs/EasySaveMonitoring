@@ -23,7 +23,7 @@ namespace EasySave
         }
         protected override void OnStartup(StartupEventArgs e)
         {
-            const string appName = "EasySave 3.0";
+            const string appName = "EasySave 3.0 Monitoring Tool";
             bool createdNew;
 
             _mutex = new Mutex(true, appName, out createdNew);

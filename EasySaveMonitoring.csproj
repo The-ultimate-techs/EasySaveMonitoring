@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Resource\Dash.png" />
+    <None Remove="Resource\executif.png" />
     <None Remove="Resource\france.png" />
     <None Remove="Resource\logo.png" />
     <None Remove="Resource\pause-button.png" />
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <Resource Include="Resource\Dash.png" />
+    <Resource Include="Resource\executif.png" />
     <Resource Include="Resource\france.png" />
     <Resource Include="Resource\logo.png" />
     <Resource Include="Resource\pause-button.png" />
