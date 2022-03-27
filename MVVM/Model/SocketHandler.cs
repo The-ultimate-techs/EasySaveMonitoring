@@ -11,13 +11,16 @@ namespace EasySave.MVVM.Model
     public sealed class SocketHandler
     {
 
-        static Socket server;
+        public Socket server { get; set; }
 
         private static SocketHandler instance = null;
         private static readonly object padlock = new object();
+        private bool close;
+        
 
         private SocketHandler() {
 
+            close = false;
             try
             {
 
@@ -29,6 +32,10 @@ namespace EasySave.MVVM.Model
 
                 //Demande de connexion au serveur
                 server.Connect(ipep);
+
+                Thread ServerThread = new Thread(new ThreadStart(CheckServer));
+                ServerThread.Start();
+
             }
             catch
             {
@@ -47,10 +54,33 @@ namespace EasySave.MVVM.Model
 
         public void Close()
         {
+            close = true;
+
             server.Shutdown(SocketShutdown.Both);
             server.Close();
 
         }
+
+
+        private void CheckServer()
+        {
+            while (true)
+            {
+                Thread.Sleep(50);
+                    
+                if (ReceiveData().Contains(@"/!\SERVEROFFLINE/!\") == true)
+                {
+                    MessageBox.Show("Server is offline");
+                    Thread.Sleep(1500);
+                    Environment.Exit(0);
+                    break;  
+                }
+
+            
+            }
+
+        }
+
 
 
         public string ReceiveData()
@@ -61,12 +91,17 @@ namespace EasySave.MVVM.Model
 
             //appel de la méthode receive qui reçoit les données envoyées par le serveur et les stocker 
             //dans le tableau data, elle renvoie le nombre d'octet reçus
-            try
+
+            if (close == false)
             {
-                int recv = server.Receive(data);
-            }
-            catch (SocketException exception)
-            {
+                try
+                {
+                    int recv = server.Receive(data);
+                }
+                catch (SocketException exception)
+                {
+
+                }
 
             }
 

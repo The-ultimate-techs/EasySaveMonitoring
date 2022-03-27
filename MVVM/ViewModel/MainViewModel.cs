@@ -27,14 +27,17 @@ namespace EasySave
 
 
         public ObservableCollection<RunningSaveFile> TileList { get; set; }
-        public Object test { get; set; }
+   
 
 
         //Relay Command for the different views
 
         public RelayCommand ChangeLanguage { get; set; }
         public RelayCommand CloseCommand { get; set; }
-        public RelayCommand GetInfo { get; set; }
+        public RelayCommand PlayCommand { get; set; }
+        public RelayCommand PauseCommand { get; set; }
+        public RelayCommand StopCommand { get; set; }
+
 
 
 
@@ -48,7 +51,11 @@ namespace EasySave
         {
             TileList = new ObservableCollection<RunningSaveFile>();
             load();
-            
+
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(ReceiveData);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
 
 
 
@@ -83,18 +90,67 @@ namespace EasySave
             });
 
 
-            GetInfo = new RelayCommand(o =>
+            PlayCommand = new RelayCommand(o =>
+
             {
+                TileList.Clear();
+                RunningSaveFile RunningSaveFile = o as RunningSaveFile;
+                RunningSaveFile.CurrentAction = "REMOTEPLAYED";
+                byte[] byData = System.Text.Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(RunningSaveFile));
 
-
-                System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-                dispatcherTimer.Tick += new EventHandler(ReceiveData);
-                dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-                dispatcherTimer.Start();
-
+                for (int i = 0; i < 50; i++)
+                {
+                    Thread.Sleep(10);
+                    SocketHandler.server.Send(byData);
+                }
 
 
             });
+
+
+
+
+            PauseCommand = new RelayCommand(o =>
+
+            {
+
+                TileList.Clear();
+                RunningSaveFile RunningSaveFile = o as RunningSaveFile;
+                RunningSaveFile.CurrentAction = "REMOTEPAUSED";
+                byte[] byData = System.Text.Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(RunningSaveFile));
+
+                for (int i = 0; i < 50; i++)
+                {
+                    Thread.Sleep(10);
+                    SocketHandler.server.Send(byData);
+                }
+
+
+                
+            });
+
+
+
+            StopCommand = new RelayCommand(o =>
+
+            {
+
+                TileList.Clear();
+                RunningSaveFile RunningSaveFile = o as RunningSaveFile;
+                RunningSaveFile.CurrentAction = "REMOTESTOPPED";
+                byte[] byData = System.Text.Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(RunningSaveFile));
+
+                for (int i = 0; i < 50; i++)
+                {
+                    Thread.Sleep(10);
+                    SocketHandler.server.Send(byData);
+                }
+                
+            });
+
+
+
+
 
 
 
@@ -141,8 +197,10 @@ namespace EasySave
         {
 
             string Rawstring = SocketHandler.ReceiveData();
+            string Flag = @"/!\STOPSENDING/!\";
+            string Offline = @"/!\SERVEROFFLINE/!\";
 
-            if (Rawstring != "")
+            if (Rawstring.Contains("]") == true && Rawstring.Contains(Flag) == false && Rawstring.Contains(Offline) == false)
             {
 
                 int index;
@@ -175,6 +233,11 @@ namespace EasySave
 
 
 
+            }
+
+            if (Rawstring.Contains(Flag) == true)
+            {
+                TileList.Clear();
             }
 
 

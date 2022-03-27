@@ -131,17 +131,6 @@
                        Source="../../Resource/executif.png" 
                        Margin="130,357,0,0"/>
 
-                            <Button
-                                    x:Name="GetInfo"
-                                    Height="25"
-                                    Width="120"
-                                    Margin="10,426,100,19"
-                                    
-                                    Content="Get informations"
-                    
-                                    Style="{StaticResource CustomAppButton}"
-                                    Command="{Binding GetInfo}"/>
-
                         </Grid>
 
                     </Border>
@@ -176,7 +165,7 @@
 
                                                 <Grid.ColumnDefinitions>
 
-                                                    <ColumnDefinition Width="680"/>
+                                                    <ColumnDefinition Width="670"/>
                                                     <ColumnDefinition Width="40"/>
                                                     <ColumnDefinition Width="40"/>
 
@@ -232,28 +221,6 @@
                       />
                                                 </Button>
 
-                                                <Button Grid.Column="3"
-                                            ClickMode="Release"
-                                            Click="ChangeDataContext"
-                                            Style="{StaticResource InvisibleButton}"
-                                            Command="{Binding DataContext.EditSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
-
-                                                    <Image Width="25"
-                                                Height="25"
-                                                Source="../../Resource/pencil.png" 
-                      />
-                                                </Button>
-
-                                                <Button Grid.Column="4"
-                                            ClickMode="Release"
-                                            Style="{StaticResource InvisibleButton}"
-                                            Command="{Binding DataContext.DeleteSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
-
-                                                    <Image Width="25"
-                                                Height="25"
-                                                Source="../../Resource/delete.png"  
-                      />
-                                                </Button>
 
                                                 <TextBlock Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="17" Text="{Binding Title}" Foreground="White" Margin="10,0,0,0"/>
 
