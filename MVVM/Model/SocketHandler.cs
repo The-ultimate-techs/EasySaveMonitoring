@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace EasySave.MVVM.Model
 {
@@ -70,8 +71,21 @@ namespace EasySave.MVVM.Model
                     
                 if (ReceiveData().Contains(@"/!\SERVEROFFLINE/!\") == true)
                 {
-                    MessageBox.Show("Server is offline");
-                    Thread.Sleep(1500);
+
+                   
+                    string msg = "Server is offline !";
+                    if (Application.Current.Dispatcher.CheckAccess())
+                    {
+                        MessageBox.Show(Application.Current.MainWindow, msg);
+                    }
+                    else
+                    {
+                        Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() => {
+                            MessageBox.Show(Application.Current.MainWindow, msg);
+                        }));
+                    }
+
+
                     Environment.Exit(0);
                     break;  
                 }
