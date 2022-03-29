@@ -107,23 +107,30 @@
 
                         <Grid>
                             <StackPanel>
-                                <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
+                                <TextBlock Text="{DynamicResource InstructionsRunSaveFile_1}"
                                Foreground="white"
                                FontSize="17" 
                                />
-
-
-                                <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
+                                <TextBlock Text="{DynamicResource InstructionsRunSaveFile_2}"
                                Foreground="white"
                                FontSize="13" 
                                TextAlignment="Justify"
                                />
-
-                                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
+                                <TextBlock Text="{DynamicResource InstructionsRunSaveFile_3}"
                                Foreground="white"
-                               FontSize="11" 
-                               TextAlignment="Justify"/>
-
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+                                <TextBlock Text="{DynamicResource InstructionsRunSaveFile_4}"
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+                                <TextBlock Text="{DynamicResource InstructionsRunSaveFile_5}"
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
 
                             </StackPanel>
                             <Image Width="110"
